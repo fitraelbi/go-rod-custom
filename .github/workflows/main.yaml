@@ -27,7 +27,7 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: latest
-            labels: ${{ vars.IMAGE }}
+            labels: fitrakz/go-rod-costum
 
 
         

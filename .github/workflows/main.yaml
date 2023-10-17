@@ -3,7 +3,7 @@ name: go-rod-custom
 on:
   push:
     branches:
-      - development
+      - master
         
 
 jobs:

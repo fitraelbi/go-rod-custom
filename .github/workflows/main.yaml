@@ -1,6 +1,9 @@
-name: Fiber-Name
+name: go-rod-custom
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - development
         
 
 jobs:

@@ -16,7 +16,7 @@ func main() {
 
 	// browser.MustIgnoreCertErrors(true)
 	fmt.Println("Set ENV")
-	l := launcher.MustNewManaged("")
+	l := launcher.MustNewManaged("").Set("proxy-server", "gw1.dataimpulse.com:10000")
 
 	l.Set("disable-gpu").Delete("disable-gpu")
 
@@ -24,8 +24,6 @@ func main() {
 	
 	browser := rod.New().Client(l.MustClient()).MustConnect()
 
-
-	browser.Set("proxy-server", "gw1.dataimpulse.com:10000")
 	go browser.MustHandleAuth("1b4723160125bb95b27f", "aca43dd13647c321")()
 
 	// browser.MustIgnoreCertErrors(true)

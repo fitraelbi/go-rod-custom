@@ -17,10 +17,15 @@ func main() {
 	// browser.MustIgnoreCertErrors(true)
 	fmt.Println("Set ENV")
 	l := launcher.MustNewManaged("")
+
+	launcher.Open(browser.ServeMonitor(""))
 	l.Set("disable-gpu").Delete("disable-gpu")
 
 	l.Headless(false).XVFB("--server-num=5", "--server-args=-screen 0 1600x900x16")
 	browser := rod.New().Client(l.MustClient()).MustConnect()
+
+	launcher.Open(browser.ServeMonitor(""))
+	
 	fmt.Println("Set Page")
 	page := browser.MustPage("https://www.wikipedia.org/")
     fmt.Println("Navigating to page")

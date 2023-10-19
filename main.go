@@ -24,16 +24,25 @@ func main() {
 	
 	browser := rod.New().Client(l.MustClient()).MustConnect()
 
-	launcher.Open(browser.ServeMonitor(""))
-	
+
+	browser.Set("proxy-server", "gw1.dataimpulse.com:10000")
+	go browser.MustHandleAuth("1b4723160125bb95b27f", "aca43dd13647c321")()
+
+	// browser.MustIgnoreCertErrors(true)
+
 	fmt.Println("Set Page")
-	page := browser.MustPage("https://www.wikipedia.org/")
-    fmt.Println("Navigating to page")
-    page.MustWaitStable()
-    simulateScroll(page)
-    fmt.Println(
-        page.MustEval("() => document.title"),	
-	)
+	// page := browser.MustPage("https://www.wikipedia.org/")
+    // fmt.Println("Navigating to page")
+    // page.MustWaitStable()
+    // simulateScroll(page)
+    // fmt.Println(
+    //     page.MustEval("() => document.title"),	
+	// )
+	page := browser.MustPage("http://api.ipify.org")
+
+	// IP address should be the same, since we are using local
+	// proxy, however the response signals that the proxy works
+	println(page.MustElement("html").MustText())
 }
 
 

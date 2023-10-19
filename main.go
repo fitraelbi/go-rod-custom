@@ -11,7 +11,7 @@ func main() {
 	controlURL, _ := l.Launch()
     browser := rod.New().ControlURL(controlURL).MustConnect()
 	
-	browser.MustHandleAuth("1b4723160125bb95b27f", "aca43dd13647c321")()
+	go browser.MustHandleAuth("1b4723160125bb95b27f", "aca43dd13647c321")()
 
 	browser.MustIgnoreCertErrors(true)
 
